@@ -1,0 +1,32 @@
+class Solution {
+public int longestValidParentheses(String s) {
+
+   // 1- Define vriables max and stack and push -1 into stack.
+    
+    int max =0;
+    Stack<Integer> stack = new Stack<>();
+    stack.push(-1);
+// 2- Itereate input String by char
+for(int idx = 0; idx < s.length(); idx++)
+{
+//3- check for open bracket and push index to stack
+if(s.charAt(idx) =='(')
+{
+stack.push(idx);
+} else {
+// 4- In case of close, first pop, then check for empty and push the index back.
+// if not empty get the max length by subracting stack value from index.
+stack.pop();
+if(stack.isEmpty()) stack.push(idx);
+else
+{
+max = Math.max(max, idx - stack.peek());
+}
+
+        }
+}
+//5- return max at the end.
+
+    return max;
+}
+}
